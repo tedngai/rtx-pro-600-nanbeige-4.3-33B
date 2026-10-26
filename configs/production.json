@@ -27,9 +27,9 @@
     "served_model_name": "nanbeige4.3-33b",
     "host_port": 8012,
     "max_model_len": 262144,
-    "max_num_seqs": 16,
-    "max_num_batched_tokens": 8192,
-    "gpu_memory_utilization": 0.85,
+    "max_num_seqs": 32,
+    "max_num_batched_tokens": 16384,
+    "gpu_memory_utilization": 0.92,
     "kv_cache_dtype": "fp8",
     "enable_prefix_caching": true,
     "enable_chunked_prefill": true,
@@ -49,5 +49,8 @@
   "scope": {
     "production_qualified": false,
     "note": "Single Spark screening only. No sustained load, overload, fairness or task-quality claim."
-  }
+  },
+  "promoted_from": "production-v2",
+  "promoted_at": "2026-10-26",
+  "note": "Serving flags promoted from production-v2 after a 10/10 screen A/B (evidence labels -20261026b); the v1 baseline remains recorded in configs/production-v1.json and evidence labels -20261026."
 }

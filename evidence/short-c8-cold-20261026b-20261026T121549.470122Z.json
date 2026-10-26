@@ -1,0 +1,2827 @@
+{
+  "schema_version": 1,
+  "harness_revision": "vllm-capacity-v1",
+  "kind": "benchmark",
+  "label": "short-c8-cold-20261026b",
+  "started_at": "20261026T121549.470087Z",
+  "run_id": "7c57a59e5dee47a187ae1104ac2941d0",
+  "workload": {
+    "label": "short-c8-cold-20261026b",
+    "profile": "production-v2",
+    "base_url": "http://127.0.0.1:8012",
+    "container": "vllm-nanbeige43-33b",
+    "mode": "decode",
+    "cache": "cold",
+    "warmup_passes": 1,
+    "concurrency": 8,
+    "prompt_tokens": 1024,
+    "output_tokens": 256,
+    "rounds": 3,
+    "arrival_stagger_seconds": 0.0,
+    "seed": 20261026,
+    "thinking": "off",
+    "prompt_set_id": null,
+    "timeout": 1800,
+    "policy": "capacity",
+    "memory_warning_mib": 8192,
+    "audit_container": false
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "samples": [
+        {
+          "elapsed_seconds": 8.088871365063824,
+          "ttft_seconds": 1.0329456330509856,
+          "last_text_seconds": 8.088753704098053,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027669835572733597,
+          "decode_tokens_per_second_estimate": 36.14043883171534,
+          "end_to_end_tokens_per_second": 31.648420211708988,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers have evolved far beyond naive sequential processing. Efficient serving requires balancing memory architecture, compute utilization, queue dynamics, and decoding strategies. Below is a detailed, interconnected technical breakdown of the core pillars.\n\n---\n\n## 1. Continuous Batching (Dynamic / Paged Batching)\n\n### The Problem with Static Batching\nIn traditional static batching, the server waits until a fixed batch size $B$ (e.g., $B=8$) is available before issuing matrix multiplications to accelerators (GPUs/TPUs).",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "68025b640cf38363e9730ba9a723f913243b2382ac2fd1232ed6e632e2ee6f8e",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 0,
+          "client_start_offset_seconds": 0.0019511720165610313
+        },
+        {
+          "elapsed_seconds": 8.090096783009358,
+          "ttft_seconds": 1.0339035959914327,
+          "last_text_seconds": 8.089974084985442,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027670864662721607,
+          "decode_tokens_per_second_estimate": 36.139094755040574,
+          "end_to_end_tokens_per_second": 31.643626382523077,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Technical Log Assessment:** The hardware infrastructure remains within nominal operational parameters (temperature, pressure, flow). No environmental or physical faults impede compute execution. We can proceed with a comprehensive, deep-dive technical exposition on **continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs** in modern Large Language Model (LLM) inference servers.\n\n---\n\n# Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs in LLM Inference\n\nModern Large Language Model (LLM) inference differs fundamentally from training. While training is compute-bound, memory-bandwidth-dominated, and highly parallelized over static batches, inference is dynamic, autoregressive, and constrained by **memory latency**, **state tracking**, and **request concurrency**.\n\nBelow is a detailed technical explanation of each core mechanism, their interactions, worked examples, and the associated latency/throughput trade",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "392f7593c6b02864915e9623e853d7b6c26658bb78cf54581ddc127c6b0c60fc",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 1,
+          "client_start_offset_seconds": 0.0027757310308516026
+        },
+        {
+          "elapsed_seconds": 8.06072645902168,
+          "ttft_seconds": 0.16761490795761347,
+          "last_text_seconds": 8.060465801972896,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 0,
+          "average_tpot_seconds_estimate": 0.030952356447118756,
+          "decode_tokens_per_second_estimate": 32.307717885986236,
+          "end_to_end_tokens_per_second": 31.758924124448008,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "created_cache_tokens": 1056
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of LLM Inference Servers\n\nModern Large Language Model (LLM) inference differs fundamentally from training. While training performs dense forward-and-backward passes over static batches of tokens, inference is dominated by **memory-bandwidth-bound autoregressive decoding**, **stateful key-value (KV) caching**, and **serving concurrency challenges**.\n\nBelow is a detailed, structured technical exposition covering the core mechanisms, worked examples, and the latency/throughput trade-offs governing production inference servers.\n\n---\n\n## 1. Continuous Batching (Dynamic / In-Flight Batching)\n\n### The Problem with Static Batching",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "ac953818eb21b49c418eba4b64fd978f39c5680dcc68abb52f364e9a0f148897",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 2,
+          "client_start_offset_seconds": 0.002134133013896644
+        },
+        {
+          "elapsed_seconds": 8.089392850059085,
+          "ttft_seconds": 1.0334391400683671,
+          "last_text_seconds": 8.089272995013744,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.0276699366860603,
+          "decode_tokens_per_second_estimate": 36.14030676491519,
+          "end_to_end_tokens_per_second": 31.646379987359644,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Technical Log Assessment:** The hardware infrastructure remains within nominal operational parameters (temperature, supply pressure, flow rates within published bands). No thermal throttling, manifold pressure drops, or anomalous cooling signatures are present. The environment is stable for sustained high-compute workloads. We proceed with the requested deep technical exposition under stable thermal and power conditions.\n\n---\n\n# Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs in LLM Inference Servers\n\nModern Large Language Model (LLM) inference serving systems must reconcile two fundamentally opposing objectives: **minimizing latency** (time from request arrival to first/next token) and **maximizing throughput** (tokens generated per second across the cluster). Because autoregressive models generate tokens sequentially, naive request processing leads to massive compute idling. This document provides a detailed, technical explanation of the core architectural mechanisms that modern inference engines use to optimize these trade-offs: **",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "638edf55ce1946592ba04194a849412c3bced180ee97819461032d7eb550f278",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 3,
+          "client_start_offset_seconds": 0.0030319420620799065
+        },
+        {
+          "elapsed_seconds": 8.088750209077261,
+          "ttft_seconds": 1.0326457130722702,
+          "last_text_seconds": 8.0886397480499,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027670564843049528,
+          "decode_tokens_per_second_estimate": 36.1394863340199,
+          "end_to_end_tokens_per_second": 31.648894252256017,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. No environmental or hardware faults detected. Proceeding with the technical deep dive into continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture\n\n---\n\n## 1. Continuous Batching\n\n### 1.1 The Problem: Static / Discrete Batching\nIn traditional static batching, the inference server waits until a fixed batch size $B$ is collected before executing a forward pass through the neural network layers. \n\n* **Latency Penalty:** If $B = 32$ is the target batch size, but only 2 requests arrive during a 100 ms window, the server idles for up to 100 ms (or longer) per batch. This leads to high **Time-To-First-Token (TTFT)**.\n*",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "9db4e225ed5f2697ea3124ff05eadaf0a6cf28da66b1d16d5331da00ba529f8d",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 4,
+          "client_start_offset_seconds": 0.0024562840117141604
+        },
+        {
+          "elapsed_seconds": 8.088807877968065,
+          "ttft_seconds": 1.0322654120391235,
+          "last_text_seconds": 8.088694012025371,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027672269019553913,
+          "decode_tokens_per_second_estimate": 36.1372607101129,
+          "end_to_end_tokens_per_second": 31.648668612501158,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> **Maintenance Log Review (Session `7c57a59e5dee47a187ae1104ac2941d0-r0-20261026-5`):**\n> *\"The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual.\"*\n>\n> **Assessment:** The infrastructure hosting this inference workload is operating within nominal thermal, flow, and pressure tolerances. No environmental or hardware faults impede the execution of the deep technical analysis below.\n\n---\n\n# Technical Deep Dive: LLM Inference Architecture \u2014 Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs\n\nModern Large Language Model (LLM) inference differs fundamentally from traditional deep learning serving. Because autoregressive models generate tokens sequentially\u2014one token at a time\u2014naive request processing wastes compute, memory, and network bandwidth. To serve high-concurrency production traffic efficiently, inference servers rely on coordinated systems: **Continuous Batching**, **Key-Value (KV) Cache",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "ea476f4ffa86f487a902acf70b9b86c8ea5fc597db8db3d1bb1ec2d2206ecf63",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 5,
+          "client_start_offset_seconds": 0.003227640059776604
+        },
+        {
+          "elapsed_seconds": 8.089024084038101,
+          "ttft_seconds": 1.0326893019955605,
+          "last_text_seconds": 8.088906172080897,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027671438706217005,
+          "decode_tokens_per_second_estimate": 36.13834505017362,
+          "end_to_end_tokens_per_second": 31.647822696579595,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture and Optimization\n\nModern Large Language Model (LLM) inference servers differ fundamentally from traditional deterministic services. Because autoregressive generation requires sequential token prediction where each step depends on all preceding tokens, serving multiple concurrent users introduces non-trivial bottlenecks across compute (tensor cores/matrix multiplication), memory bandwidth (key-value cache access), and system scheduling (latency vs. batch size).\n\nBelow is a detailed, structured technical breakdown of the core mechanisms used in production LLM inference.\n\n---\n\n## 1. Continuous Batching (Dynamic / In-Flight Batching)\n\n### The Problem",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "b4fa2ecb6a20532e83e64317574beb42018432c8bb1182adaab2020537a62014",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 6,
+          "client_start_offset_seconds": 0.00260400609113276
+        },
+        {
+          "elapsed_seconds": 8.088773531024344,
+          "ttft_seconds": 1.0330522590084001,
+          "last_text_seconds": 8.088613481959328,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02766886754098403,
+          "decode_tokens_per_second_estimate": 36.14170325253707,
+          "end_to_end_tokens_per_second": 31.648803000617665,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of LLM Inference Servers\n\nModern Large Language Model (LLM) inference differs fundamentally from training. While training performs dense forward-and-backward passes over static batches to minimize loss, **inference** is an autoregressive decoding problem: given a prompt, the model generates tokens one by one, where each newly generated token alters the hidden state of subsequent computations.\n\nAt scale, naive inference wastes massive amounts of compute and memory bandwidth. To serve diverse user demands efficiently, modern inference servers rely on five deeply interrelated mechanisms:\n\n1. **Continuous Batching**\n2. **Key-Value (KV) Caches**\n",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "ae8f1f36eb6d8e58e5f7fd223f192cc3245a2c7a0fc8827030f97c5dd2fd8caa",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 7,
+          "client_start_offset_seconds": 0.0016158230137079954
+        }
+      ],
+      "errors": [],
+      "started_at": "20261026T121549.694869Z",
+      "arrival_schedule": {
+        "mode": "synchronized",
+        "stagger_seconds": 0.0,
+        "planned_offsets_seconds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_seconds": 8.09320150502026,
+      "peak_waiting_observed": 0.0,
+      "aggregate_tokens_per_second": 253.0518977847782,
+      "metrics_after": {
+        "at": "20261026T121557.791972Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 2048.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      "service_ready": true,
+      "completed": true
+    },
+    {
+      "round": 1,
+      "samples": [
+        {
+          "elapsed_seconds": 8.046741871978156,
+          "ttft_seconds": 0.13352898496668786,
+          "last_text_seconds": 8.046562395989895,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 48,
+          "average_tpot_seconds_estimate": 0.031031503572640028,
+          "decode_tokens_per_second_estimate": 32.22531572339549,
+          "end_to_end_tokens_per_second": 31.814118567850457,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 48,
+              "created_cache_tokens": 1008
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> **Maintenance Log Review (Session `7c57a59e5dee47a187ae1104ac2941d0-r1-20261026-0`):**\n> *\"The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual.\"*\n>\n> **Assessment:** The log reflects standard hardware-level thermal and fluid checks. All parameters remain nominal. Hardware subsystem health does not alter the theoretical and practical mechanics of software-level LLM inference. We proceed directly to the detailed technical analysis requested.\n\n---\n\n# Technical Deep Dive: Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs in LLM Inference\n\nModern Large Language Model (LLM) inference serving systems have evolved beyond naive, isolated request processing. Efficiently serving hundreds of concurrent users on tens to hundreds of billions of parameters requires mastering memory hierarchies, compute utilization, and autoregressive generation dynamics. Below is an exhaustive technical treatment of the core components governing modern",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "a558dede0c0d4219384868904fd250d7370a5be63e891a2987f16a1e7c44fbdb",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 0,
+          "client_start_offset_seconds": 0.0013720790157094598
+        },
+        {
+          "elapsed_seconds": 8.073498687008396,
+          "ttft_seconds": 1.0171098749851808,
+          "last_text_seconds": 8.07334661798086,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027671516639198743,
+          "decode_tokens_per_second_estimate": 36.1382432715461,
+          "end_to_end_tokens_per_second": 31.70868169111697,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and associated latency/throughput trade-offs.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture\n\nModern Large Language Model (LLM) inference servers face a fundamental tension: **LLMs are autoregressive, requiring sequential token generation, while production demands high concurrent throughput with low latency**. This session breaks down the core mechanisms used to optimize an inference server across these axes.\n\n---\n\n## 1. Continuous Batching (Dynamic / Iteration-Level Batching)\n\n### The Problem with Static Batching\nTraditional static batching groups requests into fixed batches (e.g., batch size 32) at the arrival of a sequence. Once a batch is formed:\n* If 30 requests",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "60ad5c22316218e2cc85e33d3f864fcbc5299e61f673a2f59a941b4391dc1991",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 1,
+          "client_start_offset_seconds": 0.002072999021038413
+        },
+        {
+          "elapsed_seconds": 8.075244587962516,
+          "ttft_seconds": 1.0184852089732885,
+          "last_text_seconds": 8.07513554894831,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02767313858813734,
+          "decode_tokens_per_second_estimate": 36.13612517478124,
+          "end_to_end_tokens_per_second": 31.70182614426444,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers have transitioned from naive, sequential request execution to highly optimized, concurrent engine designs. This architecture balances compute density, memory bandwidth, memory capacity, and user-perceived latency under variable workloads.\n\n---\n\n## 1. Continuous Batching (Dynamic Batching)\n\n### Traditional Batching vs. Continuous Batching\n* **Static/Traditional Batching:** A server accepts requests and groups them into fixed-size batches (e.g., batch size 8) over a discrete time step. If 7 requests arrive, the server",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "8ed3283f30618f0ece7dcbacbb509272329044491c5fd69245a185bf31e21011",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 2,
+          "client_start_offset_seconds": 0.0015554300043731928
+        },
+        {
+          "elapsed_seconds": 8.074789774953388,
+          "ttft_seconds": 1.0179025899851695,
+          "last_text_seconds": 8.07467668002937,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027673623882526276,
+          "decode_tokens_per_second_estimate": 36.13549147899714,
+          "end_to_end_tokens_per_second": 31.703611751487088,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference differs fundamentally from training. While training is dominated by compute-bound matrix multiplications executed synchronously across distributed devices, **inference is an inherently asymmetric, memory-bandwidth-bound, and latency-sensitive pipeline**. \n\nIn an inference server, the objective function is no longer simply *minimizing Time-to-First-Token (TTFT)* or raw throughput in isolation; it is the joint optimization of **latency percentiles ($p50, p95, p99$) and aggregate throughput (tokens/second)** under variable batch sizes and memory",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "bd9cbfdb3f67ae6814dd5c947e385a45f787f8342d78cd5d10a217a10e837569",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 3,
+          "client_start_offset_seconds": 0.002382031991146505
+        },
+        {
+          "elapsed_seconds": 8.075740255997516,
+          "ttft_seconds": 1.0187328479951248,
+          "last_text_seconds": 8.075617758906446,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027674058474162044,
+          "decode_tokens_per_second_estimate": 36.134924009561246,
+          "end_to_end_tokens_per_second": 31.699880368227475,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> **Maintenance Log Review (Session `7c57a59e5dee47a187ae1104ac2941d0-r1-20261026-4`):**\n> *\"The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual.\"*\n>\n> **Assessment:** The infrastructure hosting this inference server is healthy. Cooling loop, supply manifold, and return line metrics are within normal operating thresholds with no thermal or pressure anomalies. This provides a stable, non-throttled physical environment for the compute cluster. We can proceed directly to the detailed technical analysis of the target: **Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs**.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture\n\nModern Large Language Model (LLM) inference differs fundamentally from training. While training exhibits high compute-bound, dense tensor operations across synchronized workers, inference is characterized by **memory-bandwidth bound autoregressive token generation**",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "85255be4da3a909bbaac5fe26d59bdd69dbf08411418096e36fa9fea00ebadad",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 4,
+          "client_start_offset_seconds": 0.0018108099466189742
+        },
+        {
+          "elapsed_seconds": 8.075707972981036,
+          "ttft_seconds": 1.0185641469433904,
+          "last_text_seconds": 8.07560837699566,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02767468325510694,
+          "decode_tokens_per_second_estimate": 36.13410823104778,
+          "end_to_end_tokens_per_second": 31.70000708996677,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers have transitioned from naive, sequential request execution to highly optimized, concurrent engine designs. This architecture balances compute density, memory bandwidth, and user-perceived latency under variable, bursty workloads.\n\n---\n\n## 1. Continuous Batching (Dynamic Batching)\n\n### Traditional vs. Continuous Batching\n* **Static / Fixed Batching:** Waits until a fixed batch size (e.g., $B = 32$) is queued before executing a forward pass. If traffic is sparse, requests suffer massive queuing delay.",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "f6fa3287d89483633acad7853025b54d4fe3b06ddcc9c2d94f46fc5431a26bce",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 5,
+          "client_start_offset_seconds": 0.002213240950368345
+        },
+        {
+          "elapsed_seconds": 8.074088103952818,
+          "ttft_seconds": 1.0175646980060264,
+          "last_text_seconds": 8.073978413944133,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02767221065073767,
+          "decode_tokens_per_second_estimate": 36.137336934204875,
+          "end_to_end_tokens_per_second": 31.706366923921788,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Technical Log Assessment:** The hardware infrastructure remains within nominal operational parameters (temperature, pressure, flow). No environmental or hardware faults impede compute execution. We proceed directly to the architectural and algorithmic analysis requested.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture\n\nAn LLM inference server translates token sequences into contextual completions via autoregressive decoding. Unlike training\u2014which computes gradients across billions of parameters\u2014inference presents distinct bottlenecks relating to memory bandwidth, state management, execution latency, and compute utilization.\n\nThis document provides a detailed technical explanation of **continuous batching**, **KV caches**, **prefix reuse**, **speculative decoding**, and the resultant **latency/throughput trade-offs**, complete with worked examples.\n\n---\n\n## 1. KV (Key-Value) Caches\n\n### Mechanism\nDuring autoregressive generation, each newly generated token depends on all preceding tokens. Without caching, computing the hidden states for token $t$ would require",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "71b7490ca4f0b564c561f67ae97fab5a0e1ea6668613d238a4222e2060243199",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 6,
+          "client_start_offset_seconds": 0.0019137009512633085
+        },
+        {
+          "elapsed_seconds": 8.075335151981562,
+          "ttft_seconds": 1.0186766909901053,
+          "last_text_seconds": 8.075191495008767,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027672607074582987,
+          "decode_tokens_per_second_estimate": 36.136819248898675,
+          "end_to_end_tokens_per_second": 31.70147061167877,
+          "stream_events": 257,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "# Technical Architecture of LLM Inference Servers: Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs\n\n*(Note: While the session context describes a routine cooling-loop maintenance log, this response directly and comprehensively addresses your explicit technical request regarding LLM inference server architecture.)*\n\n---\n\n## 1. Continuous Batching (Dynamic / Paged Batching)\n\n### Concept & Mechanism\nTraditional static batching groups requests into fixed-size batches (e.g., batch size = 8) at server startup or arrival. If only 3 requests arrive, compute capacity (GPUs/TPUs) sits idle. If 10 arrive, requests overflow, causing queuing delays or dropped connections.\n\n**Continuous Batching** dynamically adjusts the active batch size on every decoding step based on available GPUs and currently active sequences. Rather than waiting for a full batch, the scheduler continuously accepts new requests into the active batch up to the hardware limit ($B_{\\max}$).\n\n```\nTime Step Progression under Continuous Batching:\n\nStep t=1: [Req A] [Req B]  <-- Batch size = 2\nStep t=2: [",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "e8693d8881cab80a0053b01fa18b8b64006b87552cd8acfd3aa7c13efc07fed5",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 7,
+          "client_start_offset_seconds": 0.001102269976399839
+        }
+      ],
+      "errors": [],
+      "started_at": "20261026T121557.995748Z",
+      "arrival_schedule": {
+        "mode": "synchronized",
+        "stagger_seconds": 0.0,
+        "planned_offsets_seconds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_seconds": 8.078239599941298,
+      "peak_waiting_observed": 0.0,
+      "aggregate_tokens_per_second": 253.52058139187676,
+      "metrics_after": {
+        "at": "20261026T121606.077870Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 4096.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      "service_ready": true,
+      "completed": true
+    },
+    {
+      "round": 2,
+      "samples": [
+        {
+          "elapsed_seconds": 8.072386828949675,
+          "ttft_seconds": 1.0291471999371424,
+          "last_text_seconds": 8.07226478192024,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02762006894895332,
+          "decode_tokens_per_second_estimate": 36.205557699663004,
+          "end_to_end_tokens_per_second": 31.713049117259537,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers have transitioned from naive, sequential request execution to highly optimized, concurrent engine designs. This architecture balances two fundamentally competing axes: **latency** (time from request arrival to token generation/completion) and **throughput** (tokens generated per second across the cluster).\n\n---\n\n## 1. Continuous Batching\n\n### The Problem with Static Batching\nTraditional static batching groups incoming requests into fixed-size batches (e.g., batch size = 8) at fixed time intervals (e.g., every 100",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "a7fd3af3f2d3f404e36e0d9e24b98a13aa9b7aba7031856f878708b044da3ace",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 0,
+          "client_start_offset_seconds": 0.001290897955186665
+        },
+        {
+          "elapsed_seconds": 8.0729411279317,
+          "ttft_seconds": 1.0291110309772193,
+          "last_text_seconds": 8.072850805008784,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027622508917770842,
+          "decode_tokens_per_second_estimate": 36.202359567586335,
+          "end_to_end_tokens_per_second": 31.7108716567078,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> **Maintenance Log Review (Session `7c57a59e5dee47a187ae1104ac2941d0-r2-20261026-1`):**\n> *\"The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual.\"*\n>\n> **Assessment:** The infrastructure hosting this inference server is healthy. Liquid/air-cooled loop temperatures, manifold pressures, and thermal return metrics remain strictly within published operating bands with zero anomalies. The hardware platform is stable, thermally regulated, and unencumbered by thermal throttling\u2014providing the necessary physical foundation to discuss high-performance compute dynamics without thermal degradation.\n\n---\n\n# Technical Deep Dive: Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs in LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers operate under severe constraints of memory bandwidth, compute utilization, and autoregressive generation latency. Unlike training, where compute scales predictably via dense matrix multiplications",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "7ceadd64eaedcfc04a7fc881ffc2cb5a9d9ac178bef7ea1acb64ba5f63d68d64",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 1,
+          "client_start_offset_seconds": 0.0019338879501447082
+        },
+        {
+          "elapsed_seconds": 8.044043170986697,
+          "ttft_seconds": 0.1372389659518376,
+          "last_text_seconds": 8.043848604895175,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 48,
+          "average_tpot_seconds_estimate": 0.031006312309581712,
+          "decode_tokens_per_second_estimate": 32.251497373035726,
+          "end_to_end_tokens_per_second": 31.824791906058177,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 48,
+              "created_cache_tokens": 1008
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> **Maintenance Log Review (Session `7c57a59e5dee47a187ae1104ac2941d0-r2-20261026-2`):**\n> *\"The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual.\"*\n>\n> **Assessment:** The log reflects standard hardware-level thermal and fluid dynamics. All parameters remain nominal. Hardware subsystem health is verified; system is cleared for high-density computational operations without thermal throttling risk.\n>\n> *The following detailed technical explanation addresses your requested topic: **Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs in an LLM Inference Server**.*\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers: Batching, Caching, Speculation, and Trade-offs\n\n---\n\n## 1. Continuous Batching\n\n### Theoretical Background\nIn traditional static batching, an inference server processes a fixed batch of",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "2e8a8b2e0eddc6de3937b718c7b96febb55378894e8bb9d18e87b8b9f6d5c3f4",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 2,
+          "client_start_offset_seconds": 0.0014694519340991974
+        },
+        {
+          "elapsed_seconds": 8.071738330996595,
+          "ttft_seconds": 1.0283164220163599,
+          "last_text_seconds": 8.071628179983236,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027620830423399512,
+          "decode_tokens_per_second_estimate": 36.20455955418454,
+          "end_to_end_tokens_per_second": 31.715597000577244,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers\n\nModern Large Language Model (LLM) inference servers have transitioned from naive, sequential request execution to highly optimized, concurrent engine designs. This architecture balances compute density, memory bandwidth, and user-perceived latency under variable load.\n\n---\n\n## 1. Continuous Batching (Dynamic / Paged Batching)\n\n### Traditional Batching vs. Continuous Batching\n* **Static Batching:** Waits until a fixed batch size (e.g., $B=8$) is collected before processing. If incoming traffic drops to 1 request, the server idles until the timeout",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "9f88d36646e9ed82089f6594cc1d7acf85bb4baa0d0905330cd34f7a85ff4e27",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 3,
+          "client_start_offset_seconds": 0.0023250540252774954
+        },
+        {
+          "elapsed_seconds": 8.073636521003209,
+          "ttft_seconds": 1.0296002409886569,
+          "last_text_seconds": 8.073482809937559,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02762306889783883,
+          "decode_tokens_per_second_estimate": 36.2016256665181,
+          "end_to_end_tokens_per_second": 31.708140357077916,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the detailed technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Deep Dive: LLM Inference Server Architecture and Trade-offs\n\nModern Large Language Model (LLM) inference servers differ fundamentally from traditional deterministic microservices. Because autoregressive generation requires sequential token production, servers must manage memory hierarchies, compute utilization, concurrency, and prediction accuracy simultaneously.\n\n---\n\n## 1. KV Caches (Key-Value Caches): Foundations of State\n\n### What is a KV Cache?\nDuring autoregressive decoding, an LLM computes the probability distribution over a vocabulary for the next token conditioned on all preceding tokens:\n\n$$P(w_t \\mid w_1, w_2",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "bf4e745d29b3e1f7705b94596004d4b85d3f1feb5cb5f6b8bdbeaa2a68780994",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 4,
+          "client_start_offset_seconds": 0.0016449729446321726
+        },
+        {
+          "elapsed_seconds": 8.072337441961281,
+          "ttft_seconds": 1.0287234900752082,
+          "last_text_seconds": 8.072229573968798,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027621592485857216,
+          "decode_tokens_per_second_estimate": 36.203560693034596,
+          "end_to_end_tokens_per_second": 31.71324313937518,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Operational Status:** Hardware and thermal subsystems are nominal. The server cluster is healthy, stable, and ready for deep architectural analysis. Below is the comprehensive technical explanation addressing continuous batching, KV caches, prefix reuse, speculative decoding, and latency/throughput trade-offs in an LLM inference server.\n\n---\n\n# Technical Architecture of an LLM Inference Server\n\nModern Large Language Model (LLM) inference servers handle autoregressive generation: given an input sequence $X = (x_1, x_2, \\dots, x_n)$, the model computes probability distributions over a vocabulary $V$ for the next token $x_{n+1}$, samples or selects it, appends it to the context, and repeats. Because this is inherently sequential, naive serving architectures quickly become I/O and compute bound. \n\nTo maximize hardware utilization, modern inference engines rely on four core architectural pillars:\n1. **Continuous Batching**\n2",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "4db0f12f5f74801306c8ae95062ec6311d8fd290c61da83305283e1b59fa60eb",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 5,
+          "client_start_offset_seconds": 0.002118911943398416
+        },
+        {
+          "elapsed_seconds": 8.071482640923932,
+          "ttft_seconds": 1.0284238000167534,
+          "last_text_seconds": 8.071350079961121,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.027619318744879873,
+          "decode_tokens_per_second_estimate": 36.20654112568877,
+          "end_to_end_tokens_per_second": 31.71660169372501,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "# Technical Architecture Guide: LLM Inference Servers, Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs\n\n---\n\n## 1. Continuous Batching in LLM Inference Servers\n\n### 1.1 The Problem with Static Batching\nIn traditional static batching, the inference pipeline waits until a fixed batch size (e.g., $B = 8$) is accumulated, or a fixed time window expires, before issuing a forward pass through the network. This leads to two failure modes:\n1. **Underutilization of GPU compute:** If incoming requests are sparse, GPUs sit idle waiting for a full batch.\n2. **Tail Latency Spikes:** The last request in a static batch must wait for all preceding requests, inflating latency ($p_{99} \\gg p_{50}$).\n\n### 1.2 Mechanics of Continuous Batching\nContinuous Batching decouples **request arrival** from **computation execution**. The server maintains an active pool of in-flight sequences. Instead of processing requests in discrete, monolithic batches, the scheduler dynamically forms micro-batches across arbitrary temporal intervals $\\Delta t$.\n\n```\nStatic Batching Timeline",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "5d7f6a9881e806ecfc2534f23fc3e03af171c761e5089a7d3ab186fff419a16a",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 6,
+          "client_start_offset_seconds": 0.0017821110086515546
+        },
+        {
+          "elapsed_seconds": 8.071911358041689,
+          "ttft_seconds": 1.0288697299547493,
+          "last_text_seconds": 8.071772648021579,
+          "completion_tokens": 256,
+          "prompt_tokens": 1057,
+          "cached_tokens": 64,
+          "average_tpot_seconds_estimate": 0.02761922712967384,
+          "decode_tokens_per_second_estimate": 36.206661225708565,
+          "end_to_end_tokens_per_second": 31.71491715465365,
+          "stream_events": 258,
+          "usage": {
+            "prompt_tokens": 1057,
+            "total_tokens": 1313,
+            "completion_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 64,
+              "created_cache_tokens": 992
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "answer_excerpt": "### Session Context Note\n> *The maintenance log records a routine inspection of the cooling loop, the supply manifold, and the return line. Readings stayed inside the published band for the whole shift, and the operator noted nothing unusual (repeated entries). The log entry is unremarkable.*\n>\n> **Technical Log Assessment:** The hardware infrastructure remains within nominal operating parameters (temperature, pressure, flow). No thermal throttling, manifold imbalances, or anomalous conditions exist to constrain compute capacity. The subsequent technical analysis assumes the inference server infrastructure is stable and capable of delivering peak compute density without thermal degradation.\n\n---\n\n# Technical Architecture of Modern LLM Inference Servers: Continuous Batching, KV Caches, Prefix Reuse, Speculative Decoding, and Latency/Throughput Trade-offs\n\nLarge Language Model (LLM) inference differs fundamentally from training. While training performs massive parallel matrix multiplications over static datasets, inference is dominated by **memory bandwidth bottlenecks**, **variable memory footprints per token**, and **strict latency constraints**.\n\nBelow is a detailed technical explanation of the core mechanisms used in modern LLM inference servers, supported by worked examples and quantitative trade-offs.\n\n---\n\n## 1. Continuous Batching (Dynamic / Optimized Batching)\n",
+          "answer_excerpt_truncated": false,
+          "retrieved_codes": {},
+          "retrieval_passed": true,
+          "prompt_sha256": "a65adfde3990695747677691223eefc3caec5efee6d356885fd3f9fe712c45f9",
+          "prompt_target_tokens": 1024,
+          "prompt_actual_tokens": 1023,
+          "client_index": 7,
+          "client_start_offset_seconds": 0.001016070949845016
+        }
+      ],
+      "errors": [],
+      "started_at": "20261026T121606.279094Z",
+      "arrival_schedule": {
+        "mode": "synchronized",
+        "stagger_seconds": 0.0,
+        "planned_offsets_seconds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_seconds": 8.076195635949261,
+      "peak_waiting_observed": 0.0,
+      "aggregate_tokens_per_second": 253.58474364883085,
+      "metrics_after": {
+        "at": "20261026T121614.359105Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 6144.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 24.0,
+        "preemptions": 0.0
+      },
+      "service_ready": true,
+      "completed": true
+    }
+  ],
+  "passed": true,
+  "capacity_passed": true,
+  "quality_scope": "Synthetic forced-output speed only; not coding quality",
+  "policy": {
+    "mode": "capacity",
+    "memory_warning_mib": 8192,
+    "note": "Queueing and memory are reported; only completed work is a capacity gate"
+  },
+  "warnings": [],
+  "metrics": {
+    "samples": [
+      {
+        "at": "20261026T121549.490591Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 0.0,
+        "generation_tokens": 0.0,
+        "prefix_hits": 0.0,
+        "prefix_queries": 0.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121549.694643Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 0.0,
+        "generation_tokens": 0.0,
+        "prefix_hits": 0.0,
+        "prefix_queries": 0.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121549.898652Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 1057.0,
+        "generation_tokens": 1.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121550.102552Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 1057.0,
+        "generation_tokens": 1.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121550.307277Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 1057.0,
+        "generation_tokens": 1.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121550.512149Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 1057.0,
+        "generation_tokens": 1.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121550.717472Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 1057.0,
+        "generation_tokens": 1.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121550.922311Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 65.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121551.126149Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015821702775791868,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 121.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121551.330349Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 177.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121551.534115Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 241.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121551.738081Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 297.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121551.941629Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 353.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121552.145039Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 417.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121552.348547Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 473.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121552.552036Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 529.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121552.755684Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 593.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121552.959096Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 649.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121553.163206Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 713.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121553.366600Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 769.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121553.570208Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 825.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121553.773803Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01731372975661305,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 889.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121553.977208Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 945.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121554.180747Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1001.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121554.384182Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1065.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121554.587690Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1121.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121554.791450Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1177.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121554.995131Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1241.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121555.198910Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1297.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121555.402668Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1353.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121555.606384Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1417.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121555.810161Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1473.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121556.015933Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1537.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121556.219747Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1593.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121556.423420Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1649.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121556.626817Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1713.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121556.830730Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1769.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121557.034549Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1825.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121557.238413Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1889.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121557.442017Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 1945.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121557.645777Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 2001.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 0.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121557.849678Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 2048.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121558.053335Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 8456.0,
+        "generation_tokens": 2048.0,
+        "prefix_hits": 448.0,
+        "prefix_queries": 8456.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121558.257150Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 9513.0,
+        "generation_tokens": 2049.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121558.461864Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 9513.0,
+        "generation_tokens": 2049.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121558.666061Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 9513.0,
+        "generation_tokens": 2049.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121558.871582Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 9513.0,
+        "generation_tokens": 2049.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121559.075976Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2073.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121559.280204Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2129.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121559.484586Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2193.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121559.688427Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2249.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121559.893412Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2305.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121600.097460Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2369.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121600.301586Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0163190451027323,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2425.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121600.505184Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2489.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121600.708826Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2545.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121600.913259Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2601.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121601.117640Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2665.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121601.321337Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2721.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121601.525541Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2777.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121601.729965Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2841.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121601.933807Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2897.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121602.138141Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 2953.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121602.341824Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3017.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121602.545512Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3073.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121602.749301Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3129.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121602.953064Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01781107208355348,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3193.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121603.157154Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3249.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121603.361768Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3313.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121603.565392Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3369.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121603.769012Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3425.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121603.972780Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3489.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121604.176314Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3545.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121604.380523Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3601.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121604.584142Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3665.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121604.787813Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3721.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121604.992677Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3777.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121605.196612Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3841.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121605.400817Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3897.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121605.607232Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019303099064374774,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 3961.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121605.810968Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 4017.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121606.015413Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 4073.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 8.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121606.218876Z",
+        "running": 0.0,
+        "waiting": 0.0,
+        "kv_usage": 0.0,
+        "prompt_tokens": 16912.0,
+        "generation_tokens": 4096.0,
+        "prefix_hits": 944.0,
+        "prefix_queries": 16912.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121606.423803Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 17969.0,
+        "generation_tokens": 4097.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121606.627926Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 17969.0,
+        "generation_tokens": 4097.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121606.833432Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 17969.0,
+        "generation_tokens": 4097.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121607.038841Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 17969.0,
+        "generation_tokens": 4097.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121607.243906Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 17969.0,
+        "generation_tokens": 4097.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121607.448113Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4145.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121607.651945Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.015790618880358043,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4201.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121607.855648Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4265.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121608.059579Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016039290043828314,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4321.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121608.263427Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4377.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121608.467093Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016287961207298474,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4441.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121608.670898Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4497.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121608.875651Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016536632370768745,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4561.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121609.079693Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4617.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121609.283622Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.016785303534238905,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4673.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121609.487470Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4737.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121609.691354Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4793.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121609.895279Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017033974697709064,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4849.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121610.099132Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4913.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121610.302880Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017282645861179335,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 4969.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121610.507244Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5033.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121610.710838Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017531317024649495,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5089.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121610.914602Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5145.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121611.118487Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.017779988188119766,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5209.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121611.322381Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5265.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121611.526139Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018028659351589926,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5321.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121611.729992Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5385.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121611.933791Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018277330515060197,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5441.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121612.137730Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01830841441049391,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5497.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121612.341560Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5561.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121612.545344Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018526001678530357,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5617.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121612.750119Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5681.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121612.954005Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.018774672842000517,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5737.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121613.157967Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5793.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121613.361753Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019023344005470788,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5857.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121613.565603Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5913.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121613.769361Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.019272015168940948,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 5969.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121613.973153Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 6033.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      },
+      {
+        "at": "20261026T121614.177154Z",
+        "running": 8.0,
+        "waiting": 0.0,
+        "kv_usage": 0.01952068633241122,
+        "prompt_tokens": 25368.0,
+        "generation_tokens": 6089.0,
+        "prefix_hits": 1440.0,
+        "prefix_queries": 25368.0,
+        "success": 16.0,
+        "preemptions": 0.0
+      }
+    ],
+    "errors": [],
+    "summary": {
+      "sample_count": 122,
+      "peak_running": 8.0,
+      "peak_waiting": 0.0,
+      "maximum_kv_cache_usage_fraction": 0.01952068633241122,
+      "generated_tokens": 6089.0,
+      "prefill_tokens": 25368.0,
+      "prefix_cache_hits": 1440.0,
+      "prefix_cache_queries": 25368.0,
+      "prefix_cache_hit_rate": 0.05676442762535478,
+      "completed_requests": 16.0,
+      "preemptions": 0.0,
+      "counter_scope": "Counters are deltas from the pre-run idle snapshot, not server-lifetime totals",
+      "limitation": "Sampled gauges; short spikes can be missed between 0.2 s polls"
+    }
+  },
+  "memory": {
+    "samples": [
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120456609792,
+        "cached_bytes": 112257662976,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120454135808,
+        "cached_bytes": 112257662976,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120456212480,
+        "cached_bytes": 112257662976,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120468291584,
+        "cached_bytes": 112257662976,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120478265344,
+        "cached_bytes": 112257662976,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120490553344,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120496353280,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120503791616,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120511533056,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120513925120,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120517083136,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120521760768,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120524124160,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120528134144,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120532570112,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120533319680,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120534753280,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120537669632,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120539156480,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120540979200,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120542887936,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120542175232,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120542859264,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120543805440,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      },
+      {
+        "mem_total_bytes": 135150931968,
+        "mem_available_bytes": 120544145408,
+        "cached_bytes": 112257789952,
+        "swap_total_bytes": 2147479552,
+        "swap_free_bytes": 2145120256
+      }
+    ],
+    "errors": [],
+    "sample_count": 25,
+    "mem_total_bytes": 135150931968,
+    "minimum_mem_available_bytes": 120454135808,
+    "median_mem_available_bytes": 120524124160,
+    "maximum_swap_used_bytes": 2359296,
+    "limitation": "Sampled MemAvailable is host-wide. It cannot attribute memory to vLLM, the page cache, or another process, and one-second samples can miss peaks.",
+    "low_memory_warning": false
+  },
+  "server_before": {
+    "health": {
+      "status": "ok",
+      "http_status": 200
+    },
+    "model": {
+      "id": "nanbeige4.3-33b",
+      "object": "model",
+      "created": 1793016949,
+      "owned_by": "vllm",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "parent": null,
+      "max_model_len": 262144,
+      "permission": [
+        {
+          "id": "modelperm-86ab3c279d33e430",
+          "object": "model_permission",
+          "created": 1793016949,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    "config": {
+      "status": "ready",
+      "served_model_name": "nanbeige4.3-33b",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "context_length": 262144,
+      "owned_by": "vllm"
+    }
+  },
+  "profile": {
+    "profile": "production-v2",
+    "derived_from": "production",
+    "frozen_at": "2026-10-26",
+    "note": "Capacity/throughput variant of the production profile. Same checkpoint, image and contract; only the memory plan, sequence cap and prefill chunk change. Promote only if it passes 10/10 screens without regressions.",
+    "model": {
+      "base_repo": "Nanbeige/Nanbeige4.3-33B",
+      "base_revision": "c1093c501cc6460427c0ac634db7223d0450c0ee",
+      "repo": "primitive-ai/Nanbeige4.3-33B-FP8",
+      "revision": "0140c157bc44507929a742c220865b0870052552",
+      "architecture": "LlamaForCausalLM",
+      "parameters": "33B dense",
+      "weights": "FP8 W8A8 compressed-tensors (channel weights, dynamic per-token activations)",
+      "weights_gib": 33.09,
+      "local_dir": "models/Nanbeige4.3-33B-FP8",
+      "checkpoint_context": 524288
+    },
+    "engine": {
+      "name": "vLLM",
+      "version": "0.32.0",
+      "torch": "2.13.0+cu130",
+      "image": "vllm/vllm-openai:latest",
+      "image_digest": "sha256:befccf0e7e4089aa23926bb6f887a85c0d46c2a99e6de5c5ffdf5cb7957c5b34",
+      "image_id": "sha256:4ceb6c60eed291c1d179c35674bd8ece7acfd4f9abe8b9be83a6a4dcc3c70ea2",
+      "note": "Digest is the multi-arch manifest pinned on 2026-10-26; latest is a moving tag."
+    },
+    "serving": {
+      "tensor_parallel_size": 1,
+      "served_model_name": "nanbeige4.3-33b",
+      "host_port": 8012,
+      "max_model_len": 262144,
+      "max_num_seqs": 32,
+      "max_num_batched_tokens": 16384,
+      "gpu_memory_utilization": 0.92,
+      "kv_cache_dtype": "fp8",
+      "enable_prefix_caching": true,
+      "enable_chunked_prefill": true,
+      "reasoning_parser": "qwen3",
+      "tool_call_parser": "qwen3_coder",
+      "enable_auto_tool_choice": true
+    },
+    "expected_config": {
+      "served_model_name": "nanbeige4.3-33b",
+      "context_length": 262144
+    },
+    "host": {
+      "minimum_free_gib": 120,
+      "minimum_available_gib": 60,
+      "note": "Before start: room for 33 GiB of weights, the KV pool and the page cache."
+    },
+    "scope": {
+      "production_qualified": false,
+      "note": "Single-slice screening only. No sustained load, overload, fairness or task-quality claim."
+    }
+  },
+  "initial_metrics": {
+    "at": "20261026T121549.485228Z",
+    "running": 0.0,
+    "waiting": 0.0,
+    "kv_usage": 0.0,
+    "prompt_tokens": 0.0,
+    "generation_tokens": 0.0,
+    "prefix_hits": 0.0,
+    "prefix_queries": 0.0,
+    "success": 0.0,
+    "preemptions": 0.0
+  },
+  "prompt_set_id": "7c57a59e5dee47a187ae1104ac2941d0",
+  "token_targeting": [
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    },
+    {
+      "target": 1024,
+      "actual": 1023,
+      "sentences": 23,
+      "short_clauses": 2
+    }
+  ],
+  "server_after": {
+    "health": {
+      "status": "ok",
+      "http_status": 200
+    },
+    "model": {
+      "id": "nanbeige4.3-33b",
+      "object": "model",
+      "created": 1793016974,
+      "owned_by": "vllm",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "parent": null,
+      "max_model_len": 262144,
+      "permission": [
+        {
+          "id": "modelperm-87719d63f45f0326",
+          "object": "model_permission",
+          "created": 1793016974,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    "config": {
+      "status": "ready",
+      "served_model_name": "nanbeige4.3-33b",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "context_length": 262144,
+      "owned_by": "vllm"
+    }
+  },
+  "configuration_drift": {},
+  "summary": {
+    "sample_count": 24,
+    "median_aggregate_tokens_per_second": 253.52058139187676,
+    "median_end_to_end_tokens_per_second_per_request": 31.70498933770444,
+    "latency_p50_seconds": 8.074438939453103,
+    "latency_p95_seconds": null,
+    "ttft_p50_seconds": 1.0285736450459808,
+    "ttft_p95_seconds": null,
+    "decode_tokens_per_second_p50_estimate": 36.13871990260709,
+    "percentile_caveat": "p95 omitted below 30 samples; larger sample counts still needed for reliable tails"
+  },
+  "finished_at": "20261026T121614.361496Z",
+  "completed_requests": 24,
+  "expected_requests": 24,
+  "production_qualified": false
+}

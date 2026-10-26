@@ -56,6 +56,29 @@ The 200K prompt is the practical limit: ~2.2 minutes to first token (5.3× faste
 - Aggregate throughput scales near-linearly to C8 (7.0×), so this slice is a good batch server but a modest single-stream server.
 - Long-context prefill is the practical constraint for interactive RAG-style use; 32K is fine (6.8 s), 200K is batch-oriented.
 
+## Profile A/B: v1 vs v2 (2026-10-26)
+
+Two profiles were screened back-to-back with the identical matrix (cold restart per screen). v2 raises `gpu-memory-utilization` 0.85 → 0.92, `max-num-seqs` 16 → 32 and `max-num-batched-tokens` 8192 → 16384.
+
+| Screen | v1 (06:29 run) | v2 (12:12 run) | v1 control (12:35–12:45) |
+| --- | --- | --- | --- |
+| Decode C1 tok/s | 39.07 | 35.96 | **35.88** |
+| Decode C2 / C4 / C8 | 76.85 / 147.50 / 272.87 | 70.68 / 135.56 / 253.52 | — |
+| Warm C1 tok/s (TTFT) | 39.76 (0.033 s) | 36.40 (0.036 s) | — |
+| Prefill 16K TTFT | 2.683 s | 2.885 s | **2.798 s** |
+| Prefill 32K TTFT | 6.803 s | 7.278 s | **7.222 s** |
+| Retrieval 32K / 100K / 200K TTFT | 6.80 / 37.99 / 128.76 s | 7.22 / 40.79 / 134.73 s | — |
+| Screens passed | 10/10 | 10/10 | 2/2 |
+| KV cache | 44.57 GiB, 449,376 tok | **50.94 GiB, 513,616 tok** | — |
+| Full-context concurrency @ 262K | 1.71× | **1.96×** | — |
+| Container VRAM | 83.2 GiB | 87.4 GiB | — |
+
+**The 7–8% apparent slowdown is clock drift, not the profile.** A same-time v1 control (labels `-20261026c` / `-20261026d`) reproduces v2's numbers to within 0.2% on decode and 1–3% on prefill. The morning v1 run was measured on cooler clocks; absolute throughput across the day ranges ~35.9–39.1 tok/s. Any future A/B must interleave profiles or run a control.
+
+**What v2 actually buys:** +14.3% KV capacity and 1.96× full-context concurrency, at the cost of ~4.4 GiB of headroom (87.4 of ~91.8 GiB). Decode and prefill throughput are unchanged; the larger prefill chunk showed no measurable benefit, so it could be reverted in a later screen without loss.
+
+**Decision:** promoted. `configs/production.json` now carries the v2 serving flags (10/10 screens, no regression against the same-time control); the v1 contract is archived as `configs/production-v1.json`, and v1 evidence remains under labels `-20261026`.
+
 ## Scope and caveats
 
 - Three-round screens are screening evidence, not stable tails; p95 is omitted below 30 samples by the harness.

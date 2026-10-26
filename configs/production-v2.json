@@ -1,0 +1,55 @@
+{
+  "profile": "production-v2",
+  "derived_from": "production",
+  "frozen_at": "2026-10-26",
+  "note": "Capacity/throughput variant of the production profile. Same checkpoint, image and contract; only the memory plan, sequence cap and prefill chunk change. Promote only if it passes 10/10 screens without regressions.",
+  "model": {
+    "base_repo": "Nanbeige/Nanbeige4.3-33B",
+    "base_revision": "c1093c501cc6460427c0ac634db7223d0450c0ee",
+    "repo": "primitive-ai/Nanbeige4.3-33B-FP8",
+    "revision": "0140c157bc44507929a742c220865b0870052552",
+    "architecture": "LlamaForCausalLM",
+    "parameters": "33B dense",
+    "weights": "FP8 W8A8 compressed-tensors (channel weights, dynamic per-token activations)",
+    "weights_gib": 33.09,
+    "local_dir": "models/Nanbeige4.3-33B-FP8",
+    "checkpoint_context": 524288
+  },
+  "engine": {
+    "name": "vLLM",
+    "version": "0.32.0",
+    "torch": "2.13.0+cu130",
+    "image": "vllm/vllm-openai:latest",
+    "image_digest": "sha256:befccf0e7e4089aa23926bb6f887a85c0d46c2a99e6de5c5ffdf5cb7957c5b34",
+    "image_id": "sha256:4ceb6c60eed291c1d179c35674bd8ece7acfd4f9abe8b9be83a6a4dcc3c70ea2",
+    "note": "Digest is the multi-arch manifest pinned on 2026-10-26; latest is a moving tag."
+  },
+  "serving": {
+    "tensor_parallel_size": 1,
+    "served_model_name": "nanbeige4.3-33b",
+    "host_port": 8012,
+    "max_model_len": 262144,
+    "max_num_seqs": 32,
+    "max_num_batched_tokens": 16384,
+    "gpu_memory_utilization": 0.92,
+    "kv_cache_dtype": "fp8",
+    "enable_prefix_caching": true,
+    "enable_chunked_prefill": true,
+    "reasoning_parser": "qwen3",
+    "tool_call_parser": "qwen3_coder",
+    "enable_auto_tool_choice": true
+  },
+  "expected_config": {
+    "served_model_name": "nanbeige4.3-33b",
+    "context_length": 262144
+  },
+  "host": {
+    "minimum_free_gib": 120,
+    "minimum_available_gib": 60,
+    "note": "Before start: room for 33 GiB of weights, the KV pool and the page cache."
+  },
+  "scope": {
+    "production_qualified": false,
+    "note": "Single-slice screening only. No sustained load, overload, fairness or task-quality claim."
+  }
+}
