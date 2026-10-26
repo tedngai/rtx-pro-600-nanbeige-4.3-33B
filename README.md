@@ -43,7 +43,7 @@ FP8 keeps 8-bit weights *and* 8-bit activations with dynamic per-token scaling, 
 | Memory plan | `--gpu-memory-utilization 0.92` |
 | Parsers | `qwen3` reasoning, `qwen3_coder` tool calls, auto tool choice |
 | API | `http://127.0.0.1:8012/v1`, `/health`, `/metrics`, `/tokenize` |
-| Auth | Bearer key from `secrets/api_key` (gitignored) |
+| Auth | **None** — API bound to 127.0.0.1; `secrets/api_key` retained only for harness compatibility (`REQUIRE_API_KEY=1` re-enables `--api-key`) |
 
 `configs/production.json` is the frozen contract; `scripts/start.sh` assembles the flags and targets the MIG slice via `--gpus '"device=…"'`. `configs/workloads.json` is the screen matrix.
 

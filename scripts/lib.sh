@@ -27,6 +27,10 @@ KV_CACHE_DTYPE="${KV_CACHE_DTYPE:-fp8}"
 REASONING_PARSER="${REASONING_PARSER:-qwen3}"
 TOOL_CALL_PARSER="${TOOL_CALL_PARSER:-qwen3_coder}"
 RESTART_POLICY="${RESTART_POLICY:-unless-stopped}"
+# Bearer auth is opt-in in vLLM (--api-key). This workspace serves on
+# 127.0.0.1 only, so auth is disabled by default; set REQUIRE_API_KEY=1 to
+# re-enable it. The key file stays for harness compatibility either way.
+REQUIRE_API_KEY="${REQUIRE_API_KEY:-0}"
 # GPU selection. This host is a 2x RTX Pro 6000 Blackwell DC-4-96Q with MIG
 # enabled; GPU 0's single 4g.96gb slice is dedicated to this server (GPU 1 runs
 # the d3-systemone vLLM service). Override with GPU_DEVICE in .env.

@@ -84,11 +84,12 @@ the downloaded file hashes.
 
 ## Security notes
 
-- The API is bound to `127.0.0.1` by default. Set `BIND_ADDR=0.0.0.0` only on a
-  trusted network.
-- `secrets/api_key` is generated locally and gitignored. vLLM receives it as
-  `--api-key`, so it is visible in `docker inspect` to local users with Docker
-  access. That is acceptable on a single-user Spark; do not treat it as a
-  secret from the host's own administrators.
+- The API is bound to `127.0.0.1` by default and runs **without bearer auth**
+  (`REQUIRE_API_KEY=0`): vLLM only enforces auth when started with `--api-key`.
+  Set `BIND_ADDR=0.0.0.0` only together with `REQUIRE_API_KEY=1` on a trusted
+  network.
+- `secrets/api_key` is still generated for the test harness, which sends it as
+  a bearer header; a no-auth server ignores the header. It is gitignored and is
+  not passed to the container unless `REQUIRE_API_KEY=1`.
 - The checkpoint is an unsigned community FP8 conversion. Verify the recorded
   SHA-256 values in `state/model.json` before trusting a new download.

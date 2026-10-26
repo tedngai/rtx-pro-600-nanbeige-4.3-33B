@@ -35,7 +35,8 @@
     "enable_chunked_prefill": true,
     "reasoning_parser": "qwen3",
     "tool_call_parser": "qwen3_coder",
-    "enable_auto_tool_choice": true
+    "enable_auto_tool_choice": true,
+    "require_api_key": false
   },
   "expected_config": {
     "served_model_name": "nanbeige4.3-33b",

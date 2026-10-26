@@ -14,6 +14,10 @@ require_model
   || die "Image ${IMAGE} is missing. Run: docker pull ${IMAGE}"
 
 API_KEY="$(api_key_value)"
+auth_args=()
+if [[ "$REQUIRE_API_KEY" == "1" ]]; then
+  auth_args=(--api-key "$API_KEY")
+fi
 
 if container_exists; then
   if container_running; then
@@ -53,7 +57,7 @@ args=(
   --enable-auto-tool-choice
   --reasoning-parser "$REASONING_PARSER"
   --tool-call-parser "$TOOL_CALL_PARSER"
-  --api-key "$API_KEY"
+  "${auth_args[@]}"
   --enable-prompt-tokens-details
   --no-enable-log-requests
   --uvicorn-log-level warning
