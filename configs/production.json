@@ -24,7 +24,7 @@
   },
   "serving": {
     "tensor_parallel_size": 1,
-    "served_model_name": "nanbeige4.3-33b",
+    "served_model_name": "pratt-agent2",
     "host_port": 8012,
     "max_model_len": 262144,
     "max_num_seqs": 32,
@@ -39,7 +39,7 @@
     "require_api_key": false
   },
   "expected_config": {
-    "served_model_name": "nanbeige4.3-33b",
+    "served_model_name": "pratt-agent2",
     "context_length": 262144
   },
   "host": {

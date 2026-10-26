@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "kind": "smoke",
+  "label": "smoke-pratt-agent2",
+  "started_at": "20261026T142449.429725Z",
+  "run_id": "2866afaefd0441c4875127a64bc8c49a",
+  "passed": true,
+  "server": {
+    "health": {
+      "status": "ok",
+      "http_status": 200
+    },
+    "model": {
+      "id": "pratt-agent2",
+      "object": "model",
+      "created": 1793024689,
+      "owned_by": "vllm",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "parent": null,
+      "max_model_len": 262144,
+      "permission": [
+        {
+          "id": "modelperm-9580a9ace533a4c0",
+          "object": "model_permission",
+          "created": 1793024689,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    "config": {
+      "status": "ready",
+      "served_model_name": "pratt-agent2",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "context_length": 262144,
+      "owned_by": "vllm"
+    }
+  },
+  "profile": {
+    "profile": "production",
+    "frozen_at": "2026-10-26",
+    "model": {
+      "base_repo": "Nanbeige/Nanbeige4.3-33B",
+      "base_revision": "c1093c501cc6460427c0ac634db7223d0450c0ee",
+      "repo": "primitive-ai/Nanbeige4.3-33B-FP8",
+      "revision": "0140c157bc44507929a742c220865b0870052552",
+      "architecture": "LlamaForCausalLM",
+      "parameters": "33B dense",
+      "weights": "FP8 W8A8 compressed-tensors (channel weights, dynamic per-token activations)",
+      "weights_gib": 33.09,
+      "local_dir": "models/Nanbeige4.3-33B-FP8",
+      "checkpoint_context": 524288
+    },
+    "engine": {
+      "name": "vLLM",
+      "version": "0.32.0",
+      "torch": "2.13.0+cu130",
+      "image": "vllm/vllm-openai:latest",
+      "image_digest": "sha256:befccf0e7e4089aa23926bb6f887a85c0d46c2a99e6de5c5ffdf5cb7957c5b34",
+      "image_id": "sha256:4ceb6c60eed291c1d179c35674bd8ece7acfd4f9abe8b9be83a6a4dcc3c70ea2",
+      "note": "Digest is the multi-arch manifest pinned on 2026-10-26; latest is a moving tag."
+    },
+    "serving": {
+      "tensor_parallel_size": 1,
+      "served_model_name": "pratt-agent2",
+      "host_port": 8012,
+      "max_model_len": 262144,
+      "max_num_seqs": 32,
+      "max_num_batched_tokens": 8192,
+      "gpu_memory_utilization": 0.92,
+      "kv_cache_dtype": "fp8",
+      "enable_prefix_caching": true,
+      "enable_chunked_prefill": true,
+      "reasoning_parser": "qwen3",
+      "tool_call_parser": "qwen3_coder",
+      "enable_auto_tool_choice": true,
+      "require_api_key": "[REDACTED]"
+    },
+    "expected_config": {
+      "served_model_name": "pratt-agent2",
+      "context_length": 262144
+    },
+    "host": {
+      "minimum_free_gib": 120,
+      "minimum_available_gib": 60,
+      "note": "Before start: room for 33 GiB of weights, the KV pool and the page cache."
+    },
+    "scope": {
+      "production_qualified": false,
+      "note": "Single Spark screening only. No sustained load, overload, fairness or task-quality claim."
+    },
+    "promoted_from": "production-v2",
+    "promoted_at": "2026-10-26",
+    "note": "Serving flags promoted from production-v2 after a 10/10 screen A/B (evidence labels -20261026b); max-num-batched-tokens reverted to 8192 on 2026-10-26 because the 16384 chunk showed no measurable benefit (evidence -20261026e). The v1 baseline remains recorded in configs/production-v1.json."
+  },
+  "checks": {
+    "chat": {
+      "passed": true,
+      "seconds": 0.5096772540127859,
+      "answer_excerpt": "NANBEIGE-READY-d5d773de"
+    },
+    "stream": {
+      "passed": true,
+      "seconds": 0.2808803650550544,
+      "events": 11,
+      "answer_excerpt": "1 2 3 4 5"
+    },
+    "reasoning": {
+      "passed": true,
+      "seconds": 3.957937216036953,
+      "reasoning_characters": 246,
+      "answer_excerpt": "\n\nThe train\u2019s average speed is **80 km/h**.\n\nCalculation:\n\n- Time: 90 minutes = **1.5 hours**\n- Distance: **120 km**\n- Average speed = Distance \u00f7 Time = 120 \u00f7 1.5 = **80 km/h**",
+      "note": "Thinking is on by default; the qwen3 parser should split it"
+    },
+    "tool_call": {
+      "passed": true,
+      "seconds": 1.2231056810123846,
+      "tool_calls": [
+        {
+          "id": "chatcmpl-tool-aa983477e3a1b7c3",
+          "type": "function",
+          "function": {
+            "name": "lookup_room",
+            "arguments": "{\"room_id\": \"B204\"}"
+          }
+        }
+      ],
+      "finish_reason": "stop"
+    },
+    "forced_output": {
+      "passed": true,
+      "completion_tokens": 8,
+      "prompt_tokens": 39
+    },
+    "tokenize": {
+      "passed": true,
+      "prompt_tokens": 8
+    },
+    "prefix_reuse": {
+      "passed": true,
+      "cached_tokens": 992,
+      "first_cached_tokens": 16,
+      "note": "Second identical request should hit the prefix cache"
+    }
+  },
+  "finished_at": "20261026T142455.870491Z"
+}
