@@ -84,10 +84,12 @@ the downloaded file hashes.
 
 ## Security notes
 
-- The API is bound to `127.0.0.1` by default and runs **without bearer auth**
+- The API is bound to `0.0.0.0:8012` and runs **without bearer auth**
   (`REQUIRE_API_KEY=0`): vLLM only enforces auth when started with `--api-key`.
-  Set `BIND_ADDR=0.0.0.0` only together with `REQUIRE_API_KEY=1` on a trusted
-  network.
+  This was a deliberate deployment decision on 2026-10-26 — anyone on the local
+  network can run inference against this endpoint. To lock it down, set
+  `BIND_ADDR=127.0.0.1` or enable `REQUIRE_API_KEY=1` and recreate the
+  container.
 - `secrets/api_key` is still generated for the test harness, which sends it as
   a bearer header; a no-auth server ignores the header. It is gitignored and is
   not passed to the container unless `REQUIRE_API_KEY=1`.

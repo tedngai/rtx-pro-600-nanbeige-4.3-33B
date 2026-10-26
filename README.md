@@ -13,7 +13,7 @@ This is a screening workspace, not a production deployment. `production_qualifie
 | GPU | NVIDIA RTX Pro 6000 Blackwell DC-4-96Q, MIG `4g.96gb` slice of GPU 0 |
 | MIG device | `MIG-b12c2fdf-03dc-5a04-8cbb-46624a8df192` (~94 GiB, set in `.env` as `GPU_DEVICE`) |
 | Driver | 580.159.03 (CUDA 13.0) |
-| Coexistence | GPU 1 runs the `d3-systemone` vLLM service on :8000; ComfyUI uses :8188; this server binds :8012 on 127.0.0.1 |
+| Coexistence | GPU 1 runs the `d3-systemone` vLLM service on :8000; ComfyUI uses :8188; this server binds :8012 on **0.0.0.0** (LAN-exposed, deliberately without auth) |
 
 Unlike the GB10, this card reports VRAM through NVML and has ~8 TB/s GDDR7, so decode and prefill ceilings are much higher than the bandwidth-bound Spark numbers.
 
@@ -43,7 +43,7 @@ FP8 keeps 8-bit weights *and* 8-bit activations with dynamic per-token scaling, 
 | Memory plan | `--gpu-memory-utilization 0.92` |
 | Parsers | `qwen3` reasoning, `qwen3_coder` tool calls, auto tool choice |
 | API | `http://127.0.0.1:8012/v1`, `/health`, `/metrics`, `/tokenize` |
-| Auth | **None** — API bound to 127.0.0.1; `secrets/api_key` retained only for harness compatibility (`REQUIRE_API_KEY=1` re-enables `--api-key`) |
+| Auth | **None** — bound to 0.0.0.0:8012 on the local network (deliberate choice, 2026-10-26); `REQUIRE_API_KEY=1` re-enables `--api-key` |
 
 `configs/production.json` is the frozen contract; `scripts/start.sh` assembles the flags and targets the MIG slice via `--gpus '"device=…"'`. `configs/workloads.json` is the screen matrix.
 

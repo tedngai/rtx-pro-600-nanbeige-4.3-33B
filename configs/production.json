@@ -36,7 +36,8 @@
     "reasoning_parser": "qwen3",
     "tool_call_parser": "qwen3_coder",
     "enable_auto_tool_choice": true,
-    "require_api_key": false
+    "require_api_key": false,
+    "bind_addr": "0.0.0.0"
   },
   "expected_config": {
     "served_model_name": "pratt-agent2",
