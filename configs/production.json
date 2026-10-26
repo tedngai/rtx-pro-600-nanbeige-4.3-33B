@@ -28,7 +28,7 @@
     "host_port": 8012,
     "max_model_len": 262144,
     "max_num_seqs": 32,
-    "max_num_batched_tokens": 16384,
+    "max_num_batched_tokens": 8192,
     "gpu_memory_utilization": 0.92,
     "kv_cache_dtype": "fp8",
     "enable_prefix_caching": true,
@@ -52,5 +52,5 @@
   },
   "promoted_from": "production-v2",
   "promoted_at": "2026-10-26",
-  "note": "Serving flags promoted from production-v2 after a 10/10 screen A/B (evidence labels -20261026b); the v1 baseline remains recorded in configs/production-v1.json and evidence labels -20261026."
+  "note": "Serving flags promoted from production-v2 after a 10/10 screen A/B (evidence labels -20261026b); max-num-batched-tokens reverted to 8192 on 2026-10-26 because the 16384 chunk showed no measurable benefit (evidence -20261026e). The v1 baseline remains recorded in configs/production-v1.json."
 }

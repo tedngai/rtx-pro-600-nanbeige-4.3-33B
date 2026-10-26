@@ -38,7 +38,7 @@ FP8 keeps 8-bit weights *and* 8-bit activations with dynamic per-token scaling, 
 | Engine | vLLM 0.32.0, `vllm/vllm-openai` pinned by digest |
 | Parallelism | TP1, one MIG slice |
 | Served context | 262,144 tokens (checkpoint supports 524,288) |
-| Concurrency | 32 sequences, 16,384-token prefill chunks |
+| Concurrency | 32 sequences, 8,192-token prefill chunks |
 | KV cache | FP8, prefix caching and chunked prefill on |
 | Memory plan | `--gpu-memory-utilization 0.92` |
 | Parsers | `qwen3` reasoning, `qwen3_coder` tool calls, auto tool choice |
@@ -91,16 +91,16 @@ python3 tests/summarize.py                          # Markdown tables
 
 ## Results
 
-Measured 2026-10-26 on the GPU 0 MIG slice — **10/10 screens, 30/30 rounds passed** on the promoted profile (0.92 utilization / 32 seqs / 16K prefill chunks):
+Measured 2026-10-26 on the GPU 0 MIG slice — **10/10 screens, 30/30 rounds passed** on the promoted profile (0.92 utilization / 32 seqs / 8K prefill chunks):
 
 | Workload | Result |
 | --- | --- |
-| Decode, 1K in / 256 out, C1 | **35.96 tok/s**, 0.131 s TTFT (clock-sensitive; 35.9–39.1 across runs) |
-| Decode, C2 / C4 / C8 | 70.68 / 135.56 / **253.52 tok/s** |
-| Warm prefix reuse, C1 | 36.40 tok/s, TTFT 0.036 s, ≥90% reuse |
-| Prefill 16K / 32K | TTFT 2.89 s / 7.28 s (~4,500–5,700 tok/s) |
-| Retrieval 32K / 100K / 200K | 3/3 codes at every size; TTFT 7.2 s / 40.8 s / **134.7 s** |
-| KV capacity | 513,616 tokens (50.94 GiB), 1.96× concurrency @ 262K ctx |
+| Decode, 1K in / 256 out, C1 | **38.82 tok/s**, 0.126 s TTFT (clock-sensitive; 35.9–39.1 across runs) |
+| Decode, C2 / C4 / C8 | 76.80 / 147.49 / **271.30 tok/s** |
+| Warm prefix reuse, C1 | 39.63 tok/s, TTFT 0.033 s, ≥90% reuse |
+| Prefill 16K / 32K | TTFT 2.69 s / 6.78 s (~4,800–6,100 tok/s) |
+| Retrieval 32K / 100K / 200K | 3/3 codes at every size; TTFT 6.7 s / 38.4 s / **129.0 s** |
+| KV capacity | 516,224 tokens (51.2 GiB), 1.97× concurrency @ 262K ctx |
 
 The profile A/B (v1 vs v2), including the clock-drift control, is in [`docs/RESULTS.md`](docs/RESULTS.md). `tests/summarize.py` renders every attempt in `evidence/`, including failures.
 

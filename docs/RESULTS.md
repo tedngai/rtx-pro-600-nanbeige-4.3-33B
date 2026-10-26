@@ -79,6 +79,21 @@ Two profiles were screened back-to-back with the identical matrix (cold restart 
 
 **Decision:** promoted. `configs/production.json` now carries the v2 serving flags (10/10 screens, no regression against the same-time control); the v1 contract is archived as `configs/production-v1.json`, and v1 evidence remains under labels `-20261026`.
 
+### Follow-up: revert `max-num-batched-tokens` to 8,192
+
+The 16K prefill chunk showed no benefit, so it was reverted to 8,192 (utilization 0.92 and 32 sequences kept). This also reclaimed ~0.26 GiB of activation memory: KV grew to **516,224 tokens (51.2 GiB, 1.97× full-context concurrency)**. The final served config was re-screened end-to-end (labels `-20261026e`, 10/10 screens):
+
+| Screen | Final config (0.92 / 32 / 8,192) |
+| --- | --- |
+| Decode C1 tok/s (TTFT) | 38.82 (0.126 s) |
+| Decode C2 / C4 / C8 | 76.80 / 147.49 / 271.30 |
+| Warm C1 tok/s (TTFT) | 39.63 (0.033 s) |
+| Prefill 16K / 32K TTFT | 2.686 s / 6.777 s |
+| Retrieval 32K / 100K / 200K TTFT | 6.68 / 38.36 / 128.96 s (all codes found) |
+| KV cache | 516,224 tokens (51.2 GiB) |
+
+These match the first morning run within noise while carrying ~15% more KV capacity, so the final profile is the best of both. `configs/production-v2.json` is frozen as the screened 16K-chunk variant; `configs/production-v1.json` remains the archived baseline.
+
 ## Scope and caveats
 
 - Three-round screens are screening evidence, not stable tails; p95 is omitted below 30 samples by the harness.
