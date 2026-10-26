@@ -27,6 +27,10 @@ KV_CACHE_DTYPE="${KV_CACHE_DTYPE:-fp8}"
 REASONING_PARSER="${REASONING_PARSER:-qwen3}"
 TOOL_CALL_PARSER="${TOOL_CALL_PARSER:-qwen3_coder}"
 RESTART_POLICY="${RESTART_POLICY:-unless-stopped}"
+# GPU selection. This host is a 2x RTX Pro 6000 Blackwell DC-4-96Q with MIG
+# enabled; GPU 0's single 4g.96gb slice is dedicated to this server (GPU 1 runs
+# the d3-systemone vLLM service). Override with GPU_DEVICE in .env.
+GPU_DEVICE="${GPU_DEVICE:-MIG-b12c2fdf-03dc-5a04-8cbb-46624a8df192}"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%SZ)" "$*"; }
 warn() { printf '[%s] WARNING: %s\n' "$(date -u +%H:%M:%SZ)" "$*" >&2; }

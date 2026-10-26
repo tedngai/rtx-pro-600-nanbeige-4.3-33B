@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "kind": "smoke",
+  "label": "smoke-interface",
+  "started_at": "20261026T060851.745041Z",
+  "run_id": "f9427b75d7a14865970fdec03e13129d",
+  "passed": true,
+  "server": {
+    "health": {
+      "status": "ok",
+      "http_status": 200
+    },
+    "model": {
+      "id": "nanbeige4.3-33b",
+      "object": "model",
+      "created": 1792994931,
+      "owned_by": "vllm",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "parent": null,
+      "max_model_len": 262144,
+      "permission": [
+        {
+          "id": "modelperm-8a9b018e6eac5768",
+          "object": "model_permission",
+          "created": 1792994931,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    "config": {
+      "status": "ready",
+      "served_model_name": "nanbeige4.3-33b",
+      "root": "/models/Nanbeige4.3-33B-FP8",
+      "context_length": 262144,
+      "owned_by": "vllm"
+    }
+  },
+  "profile": {
+    "profile": "production",
+    "frozen_at": "2026-10-26",
+    "model": {
+      "base_repo": "Nanbeige/Nanbeige4.3-33B",
+      "base_revision": "c1093c501cc6460427c0ac634db7223d0450c0ee",
+      "repo": "primitive-ai/Nanbeige4.3-33B-FP8",
+      "revision": "0140c157bc44507929a742c220865b0870052552",
+      "architecture": "LlamaForCausalLM",
+      "parameters": "33B dense",
+      "weights": "FP8 W8A8 compressed-tensors (channel weights, dynamic per-token activations)",
+      "weights_gib": 33.09,
+      "local_dir": "models/Nanbeige4.3-33B-FP8",
+      "checkpoint_context": 524288
+    },
+    "engine": {
+      "name": "vLLM",
+      "version": "0.32.0",
+      "torch": "2.13.0+cu130",
+      "image": "vllm/vllm-openai:latest",
+      "image_digest": "sha256:befccf0e7e4089aa23926bb6f887a85c0d46c2a99e6de5c5ffdf5cb7957c5b34",
+      "image_id": "sha256:4ceb6c60eed291c1d179c35674bd8ece7acfd4f9abe8b9be83a6a4dcc3c70ea2",
+      "note": "Digest is the multi-arch manifest pinned on 2026-10-26; latest is a moving tag."
+    },
+    "serving": {
+      "tensor_parallel_size": 1,
+      "served_model_name": "nanbeige4.3-33b",
+      "host_port": 8012,
+      "max_model_len": 262144,
+      "max_num_seqs": 16,
+      "max_num_batched_tokens": 8192,
+      "gpu_memory_utilization": 0.85,
+      "kv_cache_dtype": "fp8",
+      "enable_prefix_caching": true,
+      "enable_chunked_prefill": true,
+      "reasoning_parser": "qwen3",
+      "tool_call_parser": "qwen3_coder",
+      "enable_auto_tool_choice": true
+    },
+    "expected_config": {
+      "served_model_name": "nanbeige4.3-33b",
+      "context_length": 262144
+    },
+    "host": {
+      "minimum_free_gib": 120,
+      "minimum_available_gib": 60,
+      "note": "Before start: room for 33 GiB of weights, the KV pool and the page cache."
+    },
+    "scope": {
+      "production_qualified": false,
+      "note": "Single Spark screening only. No sustained load, overload, fairness or task-quality claim."
+    }
+  },
+  "checks": {
+    "chat": {
+      "passed": true,
+      "seconds": 0.5233725880971178,
+      "answer_excerpt": "NANBEIGE-READY-dca2f061"
+    },
+    "stream": {
+      "passed": true,
+      "seconds": 0.2760722399689257,
+      "events": 11,
+      "answer_excerpt": "1 2 3 4 5"
+    },
+    "reasoning": {
+      "passed": true,
+      "seconds": 3.5741118360310793,
+      "reasoning_characters": 278,
+      "answer_excerpt": "\n\n90 minutes = 1.5 hours\n\nAverage speed = Distance \u00f7 Time  \n= 120 km \u00f7 1.5 h  \n= 80 km/h\n\n**Answer: 80 km/h**",
+      "note": "Thinking is on by default; the qwen3 parser should split it"
+    },
+    "tool_call": {
+      "passed": true,
+      "seconds": 1.2128229980589822,
+      "tool_calls": [
+        {
+          "id": "chatcmpl-tool-bd15ddec56fc2986",
+          "type": "function",
+          "function": {
+            "name": "lookup_room",
+            "arguments": "{\"room_id\": \"B204\"}"
+          }
+        }
+      ],
+      "finish_reason": "stop"
+    },
+    "forced_output": {
+      "passed": true,
+      "completion_tokens": 8,
+      "prompt_tokens": 39
+    },
+    "tokenize": {
+      "passed": true,
+      "prompt_tokens": 8
+    },
+    "prefix_reuse": {
+      "passed": true,
+      "cached_tokens": 992,
+      "first_cached_tokens": 16,
+      "note": "Second identical request should hit the prefix cache"
+    }
+  },
+  "finished_at": "20261026T060857.794352Z"
+}

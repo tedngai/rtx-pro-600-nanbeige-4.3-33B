@@ -59,10 +59,10 @@ args=(
   --uvicorn-log-level warning
 )
 
-log "Starting ${CONTAINER} from ${IMAGE} on ${BIND_ADDR:-127.0.0.1}:${PORT} -> :8000"
+log "Starting ${CONTAINER} from ${IMAGE} on ${BIND_ADDR:-127.0.0.1}:${PORT} -> :8000 (GPU: ${GPU_DEVICE})"
 "${DOCKER[@]}" run -d --name "$CONTAINER" \
   --restart "$RESTART_POLICY" \
-  --gpus all --ipc=host \
+  --gpus "\"device=${GPU_DEVICE}\"" --ipc=host \
   --user "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -e HF_HUB_OFFLINE=1 \
